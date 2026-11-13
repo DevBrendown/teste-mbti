@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Os 16 tipos de personalidade (MBTI)</title>
+<meta name="description" content="Faça o teste e descubra qual dos 16 tipos de personalidade (MBTI) é o seu.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Qual dos 16 tipos é o seu?">
+<meta property="og:description" content="Teste de personalidade MBTI com 24 perguntas. Descubra seu tipo.">
+<meta property="og:image" content="https://teste-mbti.vercel.app/logo/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://teste-mbti.vercel.app/logo/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" sizes="32x32" href="logo/quiz-favicon-32.png">
+<link rel="icon" href="logo/quiz-favicon.ico">
+<link rel="apple-touch-icon" href="logo/quiz-favicon-180.png">
+</head>
+<body>
+<div class="wrap">
+  <div class="topo"><b>Descubra seu MBTI</b><a href="teste.html">Fazer o teste</a></div>
+  <section class="hero">
+    <div>
+      <h1>Qual dos 16 tipos é o seu?</h1>
+      <p>O MBTI (Indicador de Tipos Myers-Briggs) classifica as pessoas em 16 tipos, segundo como cada uma gasta energia, percebe o mundo, decide e organiza a vida. Responda 24 afirmações e descubra o seu.</p>
+      <a class="btn" href="teste.html">Faça seu teste</a>
+    </div>
+    <div class="mosaico" id="mosaico" aria-label="Os 16 tipos"></div>
+  </section>
+</div>
+
+<section class="bloco"><div class="wrap">
+  <h2>O que é o MBTI</h2>
+  <p>Foi criado por Katharine Briggs e sua filha Isabel Briggs Myers, a partir da teoria dos tipos psicológicos de Carl Jung. As duas começaram a desenvolvê-lo durante a Segunda Guerra Mundial, e a primeira edição do manual saiu em 1962.</p>
+  <p>Cada tipo é uma combinação de quatro preferências, e cada preferência tem dois polos:</p>
+  <div class="dims">
+    <div class="dim"><h3>Energia</h3><p><b>E</b> Extrovertido: age, depois reflete.<br><b>I</b> Introvertido: reflete, depois age.</p></div>
+    <div class="dim"><h3>Percepção</h3><p><b>S</b> Sensorial: foca nos fatos concretos.<br><b>N</b> Intuitivo: foca em padrões e possibilidades.</p></div>
+    <div class="dim"><h3>Decisão</h3><p><b>T</b> Racional: decide por lógica e coerência.<br><b>F</b> Sentimental: decide pelas pessoas e circunstâncias.</p></div>
+    <div class="dim"><h3>Estilo</h3><p><b>J</b> Julgador: gosta de decidir e fechar.<br><b>P</b> Perceptivo: prefere manter opções abertas.</p></div>
+  </div>
+  <div class="aviso"><b>Um aviso honesto.</b> Muitos psicólogos preferem o modelo Big Five, porque o MBTI divide em categorias quem está no meio-termo: ao refazer o teste, é comum cair em outro tipo. Use o resultado para se conhecer e conversar, não para decisões sérias.</div>
+</div></section>
+
+<section class="bloco"><div class="wrap">
+  <h2>Conheça os 16 tipos</h2>
+  <p>Cada tipo tem uma cor e um símbolo próprios. A linha de letras abaixo do nome mostra as funções cognitivas, da dominante à inferior.</p>
+  <div class="grade" id="grade"></div>
+  <p style="margin-top:34px"><a class="btn" href="teste.html">Faça seu teste</a></p>
+</div></section>
+<footer><div class="wrap">Teste informal inspirado no MBTI. Não é o instrumento oficial. - &copy; 2026 Brendow Rodrigues</div></footer>
+
+<script src="tipos.js"></script>
+<script>
+const mos=document.getElementById('mosaico');
+mos.innerHTML=TIPOS.map((t,i)=>`<div class="pop" style="--i:${i}">${icone(t)}</div>`).join('');
+document.getElementById('grade').innerHTML=TIPOS.map(t=>`<article class="tipo" style="--k:${t.k}"><header>${icone(t,52)}<div><h3>${t.c} — ${t.n}</h3><small>${t.f}</small></div></header><p>${t.d}</p></article>`).join('');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.3});
+document.querySelectorAll('.pop').forEach(p=>io.observe(p));
+</script>
+</body>
+</html>
